@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+              <div class="heading"> Promise Async Await</div>
+    <div class="container">
+        <h1>1.Write one example explaining how you can write a callback function.</h1>
+        <pre>
+            function pattern(name,batch){
+                console.log(`hi my name is ${name}`)
+                batch();
+            }
+            function star(){
+                console.log(`And i am from EA23`)
+            }
+            pattern('dhiraj',star)
+
+
+
+
+            output=>   hi my name is dhiraj
+                       And i am from EA23
+        </pre>
+        <h2>Ans=> here in first function 'pattern' we are passing a another function named 'batch' as an argunment and call it within the function fand providing valude to batch function by another function 'star' here 'batch' is an callback function </h2>
+    </div>
+
+
+    <div class="container">
+        <h1>"2.Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+            Explain callback hell.
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7"</h1>
+        <pre>
+            setTimeout(()=>{
+                console.log('1')
+                      setTimeout(()=>{
+                         console.log('2') 
+                              setTimeout(()=>{
+                                console.log('3') 
+                                  setTimeout(()=>{
+                                     console.log('4') 
+                                       setTimeout(()=>{
+                                          console.log('5') 
+                                             setTimeout(()=>{
+                                                console.log('6') 
+                                                 setTimeout(()=>{
+                                              console.log('7') 
+                                               },7000)
+                                         },6000)
+                                    },5000)
+                                 },4000)
+                           },3000)
+                    },2000)
+             },1000)
+        </pre>
+    </div>
+
+    <div class="container">
+        <h1>Q.3 "Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7"</h1>
+        <pre>
+            function promisechain(alpha,timeout){
+                return new Promise((res,rej)=>{
+                    setTimeout(()=>{
+                        console.log(alpha)
+                        res("this promis is resolved")
+                    },timeout)
+                })
+            }
+            
+            function visible(){
+                promisechain(1,1000)
+                .then(()=> promisechain(2,2000))
+                .then(()=> promisechain(3,3000))
+                .then(()=> promisechain(4,4000))
+                .then(()=> promisechain(5,5000))
+                .then(()=> promisechain(6,6000))
+                .then(()=> promisechain(7,7000))
+            
+            }
+            visible();
+        </pre>
+     
+    </div>
+
+    <div class="container">
+        <h1>"4.Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+            then it should go to reject the state and catch the error and print Promise Rejected "</h1>
+        <pre>
+            let variable = "yes"
+
+            function promiseFun(p){
+      
+                 return new Promise((a, b)=>{
+      
+                       if(p === "yes"){
+      
+                          a('Promise resolve succesfully...')
+                          }
+                           else{
+                            b("Promise Reject")
+                       }
+                     })
+                  }
+      
+      promiseFun (variable)
+      .then((item) => console.log(item))
+      .catch((err) => console.log(err))
+        </pre>
+        
+    </div>
+
+    <div class="container">
+        <h1>5.Create examples to explain callback function</h1>
+        <pre>
+            function sum(a,b){
+                return a+b;
+            }
+            function multiply(a,b){
+                return a*b;
+            }
+            
+            function calculate(callback , a , b){
+                return callback(a,b)
+            }
+            
+            console.log(calculate(sum , 2 ,3))
+            console.log(calculate(multiply , 2 ,3))
+            
+            
+   
+        </pre>
+        <h2> Explanation: Callback function are the function which we can easily pass as argument in another function so that they can be called later in the function In this exapmle we are trying to calculate the sum or the multiplication of 2 numbers. So we have created 2 functions as sum and multiply and used these 2 functions inside a new function calculate as arguments. </h2>
+    </div>
+
+    <div class="container">
+        <h1>6.Create examples to explain callback hell function</h1>
+        <pre>
+            function work(){
+                console.log("Starting")
+                setTimeout(()=>{
+                    console.log("Fetch Data")
+                     setTimeout(()=>{
+                        console.log("Process Data")
+                        setTimeout(()=>{
+                            console.log("Calculate Data")
+                            setTimeOut(()=>{
+                                console.log("Ending ")
+                            },4000)  
+                        },3000)
+                    },3000)
+                },2000)
+                
+            }
+            
+            work();
+        </pre>
+        <h2>Explanation: The phenomenon which happens when we nest multiple callbacks within a function is called a callback hell. The shape of the resulting code structure resembles a pyramid and hence callback hell is also called the “pyramid of the doom”. In our example we have created a function named as work which is giving us messages about one cycle of completion of work. In this function we have called the setTimeout function multiple times in a nested way giving us a oyramid structure. This is a callback hell function </h2>
+    </div>
+
+    <div class="container">
+        <h1>7.Create examples to explain promises function</h1>
+        <pre>
+            function promise (vowel , timeout){
+                return new Promise((res,rej)=>{
+                    setTimeout(()=>{
+                        console.log(vowel)
+                        res("completed")
+                    },timeout)
+                })
+            }
+            
+            promise("A", 1000)
+            .then(()=> promise("E",2000))
+            .then(()=> promise("I",3000))
+            .then(()=> promise("O",2000))
+            .then(()=> promise("U",1000))
+        </pre>
+        <h2>Explanation: Promise is an object that was introduced to us in the ES6. It is another way to skip writing callbacks to implement asynchronous functions. It makes our code readable and helps us to avoid callback hell. It generally has three states : Pending, Fullfilled and Rejected </h2>
+    </div>
+
+    <div class="container">
+        <h1>8.Create examples to explain async await function</h1>
+        <pre>
+            function promise (vowel , timeout){
+                return new Promise((res,rej)=>{
+                    setTimeout(()=>{
+                        console.log(vowel)
+                        res("completed")
+                    },timeout)
+                })
+            }
+            async function visible(){
+                try{
+                    await promise("A", 1000)
+                    await promise("E",2000)
+                    await promise("I",1000)
+                    await promise("O",3000)
+                    await promise("U",6000)
+                    
+                }
+                catch(err){
+                    console.log("error")
+                }
+                
+            }
+            visible();
+        </pre>
+        <h2>Explanation: Async and Await is the another way to escape the callback hell problem. It is better way of approaching promises because we are removing the usuage of catch and then functions which again depends on callbacks. The await keyword must be written inside a async function and it essentially waits for a Promise().since we are not using catch function we should write our async and await inside try and catch for error Handling. In this example we have created a function named promise which is returning a Promise object and gives us vowels as output in a certain time interval. then we created another function visible and made it async so that it will not wait and start executing and then inside this function we have called promise function with a keyword await in front so that it will wait to get the result and then complete the execution </h2>
+    </div>
+    <div class="container">
+        <h1>9.Create examples to explain promise.all function</h1>
+        <pre>
+            p1 = Promise.resolve(50);
+            p2 = 200
+            p3 = new Promise(function(resolve, reject) {
+                setTimeout(resolve, 100, 'geek');
+            });
+          
+            Promise.all([p1, p2, p3]).then(function(values) {
+               console.log(values);
+            }); 
+        </pre>
+        <h2>it,s a method where it takes multiple promises in the form of array are returns a single promise</h2>
+    </div>
+</body>
+</html>
